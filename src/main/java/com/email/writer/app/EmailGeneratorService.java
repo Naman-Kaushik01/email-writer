@@ -2,13 +2,25 @@ package com.email.writer.app;
 
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class EmailGeneratorService {
 
     public String generateEmailReply(EmailRequest emailRequest) {
         //Build the prompt
         String prompt = buildPrompt(emailRequest);
+
         //Craft a request
+        Map<String , Object> requestBody = Map.of(
+                "contents" , new Object[]{
+                        Map.of("parts" , new Object[]{
+                                Map.of("text" , prompt)
+                        })
+                }
+
+        )
         //Do Request and get response
         //Return response
     }
