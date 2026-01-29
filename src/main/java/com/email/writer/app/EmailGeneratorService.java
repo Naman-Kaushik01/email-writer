@@ -13,6 +13,7 @@ import java.util.Map;
 public class EmailGeneratorService {
 
     private final WebClient webClient;
+
     @Value("${gemini.api.url}")
     private String geminiApiUrl;
     @Value("${gemini.api.key}")
@@ -40,6 +41,7 @@ public class EmailGeneratorService {
         String response = webClient.post()
                 .uri(geminiApiUrl + geminiApiKey)
                 .header("Content-Type" , "application/json")
+                .bodyValue(requestBody)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
