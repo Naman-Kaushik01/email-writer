@@ -1,11 +1,20 @@
 package com.email.writer.app;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
 @Service
 public class EmailGeneratorService {
+
+    @Value("${gemini.api.url}")
+    private String geminiApiUrl;
+
+
+    @Value("${gemini.api.key}")
+    private String geminiApiKey;
+
     public String generateEmailReply(EmailRequest emailRequest) {
         //Build the prompt for the AI model
         String prompt = buildPrompt(emailRequest);
