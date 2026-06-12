@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { Box, Button, CircularProgress, Container, FormControl, Input, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import axios from 'axios';
 import './App.css'
 
 function App() {
@@ -16,7 +18,30 @@ function App() {
         Email Reply Generator
       </Typography>
 
-     
+     <Box sx={{mx:3}}>
+      <TextField
+      fullWidth
+      multiline
+      rows={6}
+      label="Original Email Content"
+      value={emailContent}
+      onChange={(e) => setEmailContent(e.target.value)}
+      sx ={{mb:2}}
+    />
+
+      <FormControl fullWidth sx={{ mb:2 }}>
+            <InputLabel>Tone (Optional)</InputLabel>
+            <Select
+              value={tone || ''}
+              label={"Tone (Optional)"}
+              onChange={(e) => setTone(e.target.value)}>
+                <MenuItem value="">None</MenuItem>
+                <MenuItem value="professional">Professional</MenuItem>
+                <MenuItem value="casual">Casual</MenuItem>
+                <MenuItem value="friendly">Friendly</MenuItem>
+            </Select>
+          </FormControl>
+     </Box>
   </Container>
 
 
